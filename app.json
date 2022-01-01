@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "PawaTrip",
+    "slug": "PawaTrip",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "PawaTrip"
+}
