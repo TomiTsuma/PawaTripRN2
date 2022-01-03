@@ -7,7 +7,7 @@ import GetLocation from 'react-native-get-location'
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
 
-MapboxGL.setAccessToken('pk.eyJ1IjoicGF3YXRyaXAxIiwiYSI6ImNreHlycmN5cjJqODkycm1wcTF4emxiMzQifQ.EsxEg95uy7Hljrk1Fr4Btw');
+MapboxGL.setAccessToken('pk.eyJ1IjoicGF3YXRyaXAxIiwiYSI6ImNreHl1YWwxazJ5bmMzMnA0dmNsMjgzMDIifQ.1q3P-KgFsKWEmuqY0ttuCw');
 
 
 const Map = () => {
