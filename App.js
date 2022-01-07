@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import RideDetails from './screens/RideDetails.js'
 import PriceDetails from './screens/PriceDetails.js'
 import Index from './screens/index';
 import IdScreen from './screens/IdScreen';
@@ -41,9 +42,16 @@ export default function App() {
         headerShown: false
       }}
       /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
       name='MapScreen'
       component = {MapScreen}
+      options = {{
+        headerShown: false
+      }}
+      /> */}
+      <Stack.Screen
+      name='RideDetails'
+      component = {RideDetails}
       options = {{
         headerShown: false
       }}
