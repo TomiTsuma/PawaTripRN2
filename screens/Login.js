@@ -26,7 +26,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const u = useSelector((state) => state.user.currentUsr)
+    const u = useSelector((state) => state.user)
 
 
     const onGoogleButtonPress = () => {
@@ -54,21 +54,26 @@ const Login = () => {
 
 
     const handleLogin = () => {
+      
+
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
           const user = userCredentials.user;
           dispatch(
             setCurrentUser({
-              currUser:user.email
+              currUsr:String(user.email).split('@')[0]
+              
             }),
             setUserEmail({
               userEmail:user.email
             })
           );
-          console.log(u.currUser)
+    
+          console.log(u.currentUsr)
         })
-        .catch(error => alert(error.message))
+          .catch(error => alert(error.message)) 
     }
+
 
     return (
         <SafeAreaView style={styles.container}>

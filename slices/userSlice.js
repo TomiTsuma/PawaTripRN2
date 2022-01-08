@@ -2,21 +2,11 @@ import { createSlice} from "@reduxjs/toolkit";
 
 
 const initialState={
-    currentUsr:{
-        currUser:""
-    },
-    usrPhone:{
-        userPhone:""
-    },
-    usrId:{
-        userId:""
-    },
-    usrMode:{
-        userMode:""
-    },
-    usrEmail:{
-        userEmail:""
-    }
+    currentUsr:"em",
+    usrPhone:"",
+    usrId:"",
+    usrMode:"",
+    usrEmail:""
 }
 
 export const userSlice = createSlice({
@@ -24,7 +14,7 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         setCurrentUser:(state,action)=>{
-            state.origin = action.payload
+            state.currentUsr = action.payload
         },
         setUserId:(state,action) =>{
             state.origin = action.payload
