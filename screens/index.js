@@ -12,7 +12,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <SafeAreaView style={{width:"100%",height:"100%"}}>
+    // <SafeAreaView style={{width:"100%",height:"100%"}}>
       <ImageBackground  style={{width:"100%",height:"100%"}} source={logo}>
        <View style={{width:"100%",height:"100%",paddingTop:260}}>
     <Tab.Navigator>
@@ -21,7 +21,7 @@ const TabNavigator = () => {
     </Tab.Navigator>
     </View>
     </ImageBackground>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };
 
