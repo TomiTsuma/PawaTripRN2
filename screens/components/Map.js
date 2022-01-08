@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, PermissionsAndroid} from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import tw from 'tailwind-react-native-classnames'
-import { selectOrigin } from '../../slices/navSlice'
+import { setOrigin } from '../../slices/navSlice'
 //import GetLocation from 'react-native-get-location'
 import MapboxGL from '@react-native-mapbox-gl/maps';
-import Geolocation from '@react-native-community/geolocation'
-
+import Geolocation from 'react-native-geolocation-service'
 
 
 
@@ -17,10 +16,12 @@ const Map = () => {
   const [ currentLongitude, setCurrentLongitude] = useState('...');
   const [currentLatitude,setCurrentLatitude ] = useState('...');
   const [locationStatus,  setLocationStatus] = useState('');
+  const dispatch  = useDispatch();
   useEffect(() => {
+    
     const requestLocationPermission = async () => {
+      
       if (Platform.OS === 'ios') {
-        getOneTimeLocation();
       } else {
         try {
           const granted = await PermissionsAndroid.request(
@@ -32,7 +33,7 @@ const Map = () => {
           );
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
             //To Check, If Permission is granted
-            getOneTimeLocation();
+            
           } else {
             setLocationStatus('Permission Denied');
           }
@@ -42,35 +43,42 @@ const Map = () => {
       }
     };
     requestLocationPermission();
+    getCurrLocation();
     return () => {
-      Geolocation.clearWatch(watchID);
+      // Geolocation.clearWatch(watchID);
     };
   }, []);
+
+  const getCurrLocation =()=>{
+      Geolocation.getCurrentPosition(
+        position => {
+          console.warn(position)
+          dispatch(
+            setOrigin({
+              location:position.coords,
+              lat:position.coords.latitude,
+              lng:position.coords.longitude
+            })
+          )
+        })
+
+  }
+
+  
 
 
   
     return (
 <MapboxGL.MapView
-    style={tw`flex-1 `}>
+    style={tw`flex-1 `}
+    onPress={getCurrLocation}>
 
       <MapboxGL.Camera
-        zoomLevel={8}
-        centerCoordinate={[135, 1]}
+        zoomLevel={12}
+        centerCoordinate={[36.7442,1.3939]}
+        on
       ></MapboxGL.Camera>
     </MapboxGL.MapView>
-    // position={{
-    //   latitude:currentLatitude,
-    //   longitude:currentLongitude
-    // }}
-
-    // mapType="mutedStandard"
-    
-    // initialRegion={{
-    //    latitude: 36.7685,
-    //    longitude: 1.3823,
-    //   latitudeDelta: 0.0922,
-    //   longitudeDelta: 0.0421,
-    // }}
       
     )
 }
@@ -78,3 +86,7 @@ const Map = () => {
 export default Map
 
 const styles = StyleSheet.create({})
+
+
+
+

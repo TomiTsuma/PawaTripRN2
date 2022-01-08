@@ -9,8 +9,6 @@ import sidebar from '../assets/sidebar.png'
 import button from '../assets/button.png'
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
-MapboxGL.setAccessToken('pk.eyJ1IjoidG9tbXl0c3VtYSIsImEiOiJja3JldzkyanM1cHYyMnFvNndqNHVmZ3E5In0.57Og6Agd2HC8lNZMTPay-w');
-
 const MapScreen = () => {
 
   
@@ -19,6 +17,7 @@ const MapScreen = () => {
     <><View style={tw`h-2/3`}>
 
       <Map />
+      
       <GooglePlacesAutocomplete
         styles={{
           container: {

@@ -1,13 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { createStore } from "redux";
 import { Location, Permission } from "expo";
-import { auth } from "../firebase";
 
 const initialState = {
-    origin: null,
-    destination: null,
+    origin: { 
+        coordinates:{
+            latitude:"",
+            longitude:""
+        }
+    },
+    destination: {
+        coordinates:{
+            latitude:"",
+            longitude:"",
+        }
+    },
     travelTimeInformation : null,
-    user: null
 }
 
 
@@ -19,23 +27,20 @@ export const navSlice = createSlice({
             state.origin = action.payload
         },
         setDestination:(state,action) => {
-            state.origin = action.payload
+            state.destination = action.payload
         },
         setTravelTimeInformation:(state,action) => {
             state.origin = action.payload
         },
-        setUser:(state) =>{
-            state.user = auth.currentUser;
-        }
+        
     }
 
 })
 
-export const {setOrigin, setDestination, setTravelTimeInformation,setUser} =navSlice.actions;
+export const {setOrigin, setDestination, setTravelTimeInformation} =navSlice.actions;
 
 
 export const selectOrigin = (state) => state.nav.origin;
 export const selectDestination = (state) => state.nav.destination;
 export const selectTravelTimeInformation = (state) => state.nav.travelTimeInformation;
-export const selectUser = (state) => state.nav.user;
 export default navSlice.reducer;

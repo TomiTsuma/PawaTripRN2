@@ -11,6 +11,7 @@ import IdScreen from './screens/IdScreen';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import MapScreen from './screens/MapScreen.js';
+import BookingDetails from './screens/BookingDetails.js';
 
 
 export default function App() {
@@ -49,9 +50,16 @@ export default function App() {
         headerShown: false
       }}
       /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
       name='RideDetails'
       component = {RideDetails}
+      options = {{
+        headerShown: false
+      }}
+      /> */}
+      <Stack.Screen
+      name='BookingDetails'
+      component = {BookingDetails}
       options = {{
         headerShown: false
       }}

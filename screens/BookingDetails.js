@@ -17,7 +17,7 @@ import driver_background from '../assets/driver_background.png'
 const BookingDetails = () => {
     return (
         <View>
-            <ImageBackground 
+             <ImageBackground 
             source={back}
             style={{width:'100%',height:'100%',alignItems:'center'}}>
 
@@ -41,10 +41,11 @@ const BookingDetails = () => {
            
                     </View>
                     </View>
+                    
                     <NavigateCard></NavigateCard>
-                    <View style={{flexDirection:'row',marginTop:130}}>
+                    <View style={{flexDirection:'row',marginTop:-160}}>
                     <Image source={prof_pic}
-                        style={{width:20,height:20, alignSelf:'center',marginLeft:30}}></Image>
+                        style={{width:20,height:20,marginLeft:30}}></Image>
                     <Text style={{alignSelf:'center'}}>3 Passengers</Text>
 
                     </View>
@@ -66,11 +67,12 @@ const BookingDetails = () => {
                         <Text style={{fontSize:15,marginRight:6}}>Message</Text>
 
                     </View>
-                </ImageBackground>
-                <ImageBackground 
+               
+                     </ImageBackground>
+                 <ImageBackground 
             source={driver_background}
-            style={{width:300,height:170,alignItems:'flex_start'}}>
-                <View style={{flexDirection:'row',marginTop:10}}>
+            style={{width:300,height:170}}>
+                 <View style={{flexDirection:'row',marginTop:10}}>
                     <Image source={prof_pic}
                         style={{width:10,height:10, alignSelf:'center',marginLeft:30}}></Image>
                     <Text style={{alignSelf:'center'}}>Mazda Demio</Text>
@@ -97,11 +99,11 @@ const BookingDetails = () => {
                         style={{width:10,height:10, alignSelf:'center',marginLeft:30}}></Image>
                     <Text style={{alignSelf:'center'}}>Ksh. 150 per seat</Text>
 
-                    </View>
+                    </View> 
 
             </ImageBackground>
                 
-            </ImageBackground>
+            </ImageBackground> 
         </View>
     )
 }

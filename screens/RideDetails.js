@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , Component} from 'react';
 import { ImageBackground, Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import 'react-native-gesture-handler'
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
@@ -15,18 +15,24 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const RideDetails = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [dateTimeMode, setTimeDateMode] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  var [dateTimeMode, setTimeDateMode] = useState('');
+  
   const currentDateTime = new Date();
   const year = currentDateTime.getFullYear();
   const month = currentDateTime.getMonth();
   const day = currentDateTime.getDay();
   const hour = currentDateTime.getHours();
   const min = currentDateTime.getMinutes();
-  const currdate = day+"/"+month+"/"+year;
-  const currtime = hour+":"+min
+  var currdate = day+"/"+month+"/"+year;
+  var currtime = hour+":"+min;
+  var count = 1
+  var [date, setDate] = useState(currdate);
+  var [time, setTime] = useState(currtime);
+  var [carpoolers, setCarpoolers] = useState('');
 
+  
+
+ 
 
 
   const showDatePicker=()=>{
@@ -41,12 +47,16 @@ const RideDetails = () => {
     
     currdate =  date.getFullYear()+"/"+date.getMonth()+"/"+date.getDay();
     currtime = date.getHours()+":"+date.getMinutes();
+    setDate(currdate);
+    setTime(currtime);
     hideDatePicker();
   };
 
 
 
-  return (
+
+return (
+    
     <SafeAreaView style={{ width: "100%", height: "100%" }}>
       <Image
         source={back}
@@ -65,7 +75,7 @@ const RideDetails = () => {
             <TouchableOpacity onPressIn={()=>setTimeDateMode("time")} onPress={ showDatePicker}>
               <ImageBackground source={bkg}
                 style={{ width: 80, height: 50 }}>
-                <Text style={{ alignSelf: "center", marginTop: 10 }} >{currtime}</Text>
+                <Text style={{ alignSelf: "center", marginTop: 10 }} >{time}</Text>
 
                 <DateTimePickerModal
                   isVisible={isDatePickerVisible}
@@ -81,10 +91,10 @@ const RideDetails = () => {
               style={{ width: 280, height: 60 }}>
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity>
-                  <Image source={minus}
+                  <Image source={minus} 
                     style={{ width: 40, height: 40, marginStart: 20, marginTop: 5 }} />
                 </TouchableOpacity>
-                <TextInput style={{ marginLeft: 70 }}>1</TextInput>
+                <TextInput style={{ marginLeft: 70 }}>{carpoolers}</TextInput>
                 <TouchableOpacity>
                   <Image source={plus}
                     style={{ width: 40, height: 40, marginLeft: 70, marginTop: 5 }} />
@@ -102,7 +112,7 @@ const RideDetails = () => {
               <ImageBackground
                 source={bkg}
                 style={{ width: 80, height: 50 }} >
-                <Text style={{ alignSelf: "center", marginTop: 10 }}  >{currdate}</Text>
+                <Text style={{ alignSelf: "center", marginTop: 10 }}  >{date}</Text>
 
               </ImageBackground>
             </TouchableOpacity>
