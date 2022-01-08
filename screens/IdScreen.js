@@ -18,7 +18,7 @@ const IdScreen = () => {
     const u = useSelector((state) => state.user)    
     
     const setIDNumber = () =>{
-        console.log(u.currentUsrl);
+        console.log(u.currentUsr);
         set(ref(database, 'users/'+ String(u.currentUsr)), {
             IDNumber: id
           });  

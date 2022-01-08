@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { createStore } from "redux";
-import { Location, Permission } from "expo";
+
 
 const initialState = {
     origin: { 
