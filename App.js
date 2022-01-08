@@ -7,6 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import RideDetails from './screens/RideDetails.js'
 import PriceDetails from './screens/PriceDetails.js'
 import Index from './screens/index';
+import TabNavigator from './screens/index';
 import IdScreen from './screens/IdScreen';
 import { store } from './store';
 import { Provider } from 'react-redux';
@@ -23,8 +24,8 @@ export default function App() {
     <SafeAreaProvider>
      <Stack.Navigator>
      <Stack.Screen
-        name = 'index'
-        component = {Index}
+        name = 'TabNavigator'
+        component = {TabNavigator}
         options = {{
           headerShown: false
         }}

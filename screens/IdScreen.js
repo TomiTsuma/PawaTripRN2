@@ -15,12 +15,11 @@ import navSlice from '../slices/navSlice';
 const IdScreen = () => {
     const [id, setID] = useState('');
     const dispatch = useDispatch(); 
-    const user = String(auth.currentUser).split('@')[0];
-    
+    const u = useSelector((state) => state.user)    
     
     const setIDNumber = () =>{
-        console.log(user.email);
-        set(ref(database, 'users/'+ String(user)), {
+        console.log(u.currentUsrl);
+        set(ref(database, 'users/'+ String(u.currentUsr)), {
             IDNumber: id
           });  
 
