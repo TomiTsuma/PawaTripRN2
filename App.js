@@ -22,13 +22,13 @@ export default function App() {
     <NavigationContainer>
     <SafeAreaProvider>
      <Stack.Navigator>
-     {/* <Stack.Screen
+     <Stack.Screen
         name = 'index'
         component = {Index}
         options = {{
           headerShown: false
         }}
-      /> */}
+      />
       {/* <Stack.Screen
       name='IdScreen'
       component = {IdScreen}
@@ -57,13 +57,13 @@ export default function App() {
         headerShown: false
       }}
       /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
       name='BookingDetails'
       component = {BookingDetails}
       options = {{
         headerShown: false
       }}
-      />
+      /> */}
     </Stack.Navigator>
     </SafeAreaProvider>
     </NavigationContainer>

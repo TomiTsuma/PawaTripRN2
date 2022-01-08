@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import logo from '../assets/logo.png'; 
 //import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser, setUserEmail } from '../slices/userSlice'
 
 import 'react-native-gesture-handler';
 import { auth } from '../firebase';
@@ -13,26 +15,19 @@ import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
+
 const provider = new GoogleAuthProvider();
 
 GoogleSignin.configure({
   webClientId: '222655618418-56opdtgrudrssbflgolm41t3dgffki5t.apps.googleusercontent.com',
 }); 
-//const navigation = useNavigation()
-
-//   useEffect(() => {
-//     const unsubscribe = auth.onAuthStateChanged(user => {
-//       if (user) {
-//         navigation.replace("Home")
-//       }
-//     })
-
-//     return unsubscribe
-//   }, [])
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const u = useSelector((state) => state.user.currentUsr)
+
 
     const onGoogleButtonPress = () => {
         alert("called")
@@ -62,7 +57,15 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then(userCredentials => {
           const user = userCredentials.user;
-          console.log('Logged in with:', user.email);
+          dispatch(
+            setCurrentUser({
+              currUser:user.email
+            }),
+            setUserEmail({
+              userEmail:user.email
+            })
+          );
+          console.log(u.currUser)
         })
         .catch(error => alert(error.message))
     }
