@@ -28,7 +28,7 @@ const RideDetails = () => {
   var count = 1
   var [date, setDate] = useState(currdate);
   var [time, setTime] = useState(currtime);
-  var [carpoolers, setCarpoolers] = useState('');
+  var [carpoolers, setCarpoolers] = useState(count);
 
   
 
@@ -58,61 +58,44 @@ const RideDetails = () => {
 return (
     
     <SafeAreaView style={{ width: "100%", height: "100%" }}>
-      <Image
+      <ImageBackground
         source={back}
-        style={{ width: "100%", height: "100%", margin: 0, position: "absolute" }}>
+        style={{ width: "100%", height: "100%"}}>
 
-      </Image>
+      
       <Text style={styles.title}>Ride Details</Text>
-      <View style={{ width: "100%", height: "100%", alignItems: 'center', marginTop: 40, marginBottom: 10, marginLeft: 50, flexDirection: "column" }}>
+      <View style={{ width: "100%", height: "100%", alignItems: 'center', marginTop: 40, marginBottom: 10, flexDirection: "column" }}>
         <ImageBackground source={bkg}
-          style={{ width: 220, height: 140, marginLeft: -70 }}>
+          style={{ width: 310, height: 190 }}>
           <NavigateCard ></NavigateCard>
         </ImageBackground>
-        <View style={{ width: "100%", height: 30, marginTop: 10, marginBottom: 10, marginLeft: -10, marginRight: 20, flex: 1, flexDirection: "row" }}>
-          <View style={{ marginRight: 100 }} >
-            <Text >Departure Time</Text>
+        <View style={{ width: "100%", height: 20, marginTop: 10, marginBottom: 10, padding:50, flex: 1, flexDirection: "row",alignSelf:"center" ,flex:0}}>
+          <View style={{ marginEnd:80}} >
+            <Text style={{ width:120,height:50,marginBottom:-20,fontSize:15}}>Departure Time</Text>
             <TouchableOpacity onPressIn={()=>setTimeDateMode("time")} onPress={ showDatePicker}>
               <ImageBackground source={bkg}
-                style={{ width: 80, height: 50 }}>
-                <Text style={{ alignSelf: "center", marginTop: 10 }} >{time}</Text>
+                style={{ width: 130, height: 70 }}>
+                <Text style={{ alignSelf: "center", marginTop: 10,fontSize:17 }} >{time}</Text>
 
                 <DateTimePickerModal
                   isVisible={isDatePickerVisible}
+                  is24Hour={true}
                   mode={dateTimeMode}
                   onConfirm={handleConfirm}
                   onCancel={hideDatePicker}
                 />
               </ImageBackground>
             </TouchableOpacity>
-            <Text style={{ marginTop: 100 }}>Number of passengers</Text>
-
-            <ImageBackground source={carpoolersbkg}
-              style={{ width: 280, height: 60 }}>
-              <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity>
-                  <Image source={minus} 
-                    style={{ width: 40, height: 40, marginStart: 20, marginTop: 5 }} />
-                </TouchableOpacity>
-                <TextInput style={{ marginLeft: 70 }}>{carpoolers}</TextInput>
-                <TouchableOpacity>
-                  <Image source={plus}
-                    style={{ width: 40, height: 40, marginLeft: 70, marginTop: 5 }} />
-                </TouchableOpacity>
-              </View>
-
-            </ImageBackground>
-            <Button title="Continue"></Button>
 
           </View>
-          <View style={{ marginLeft: -180 }} >
-            <Text>Departure Date</Text>
+          <View style={{ }} >
+            <Text style={{ width:120,height:50,marginBottom:-20,fontSize:15}}>Departure Date</Text>
             <TouchableOpacity onPressIn={()=>setTimeDateMode("date")} onPress={showDatePicker}>
 
               <ImageBackground
                 source={bkg}
-                style={{ width: 80, height: 50 }} >
-                <Text style={{ alignSelf: "center", marginTop: 10 }}  >{date}</Text>
+                style={{ width: 130, height: 70 }} >
+                <Text style={{ alignSelf: "center", marginTop: 10,fontSize:17 }}  >{date}</Text>
 
               </ImageBackground>
             </TouchableOpacity>
@@ -120,9 +103,30 @@ return (
           </View>
 
         </View>
+        
+        <Text style={{ marginTop: 100 ,fontSize:17}}>Number of passengers</Text>
+
+<ImageBackground source={carpoolersbkg}
+  style={{ width: 280, height: 60 , alignSelf:"center"}}>
+  <View style={{ flexDirection: "row" }}>
+    <TouchableOpacity>
+      <Image source={minus} 
+        style={{ width: 40, height: 40, marginStart: 20, marginTop: 5 }} />
+    </TouchableOpacity>
+    <TextInput style={{ marginLeft: 70 }}>{carpoolers}</TextInput>
+    <TouchableOpacity>
+      <Image source={plus}
+        style={{ width: 40, height: 40, marginLeft: 70, marginTop: 5 }} />
+    </TouchableOpacity>
+  </View>
+
+</ImageBackground>
+<Button title={'Continue'} style={{marginTop:50,width:50}}></Button>
 
 
       </View>
+
+      </ImageBackground>
     </SafeAreaView>
   )
 }

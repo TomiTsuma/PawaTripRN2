@@ -1,29 +1,29 @@
 import React from 'react'
 import { StyleSheet, Text, View, SafeAreaView,TextInput,Image,Button, ImageBackground } from 'react-native'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUserPhone } from '../slices/userSlice';
 import logo from '../assets/logo.png'; 
 import { auth, database } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
+import {set, ref} from 'firebase/database'
 
 
 const PhoneNumberScreen = () => {
     const [phone, setPhone] = useState('');
-    const user = String(auth.currentUser).split('@')[0];
+    const dispatch = useDispatch();
+    const user = String(auth.currentUser.email).split('@')[0];
 
     const setPhoneNumber = () =>{
-        console.log(user.email);
-        set(ref(database, 'users/'+ String(user)), {
+        
+        set(ref(database, 'user/'+ user), {
             PhoneNumber: phone
           });  
-
-
-        //   const navigation = useNavigation()
-
-        //   React.useEffect(() => {
-           
-        //         navigation.replace("Home")
-              
-        //     })
+          dispatch(
+            setUserPhone({
+              usrPhone:phone
+            })
+          ); 
         
     }
     

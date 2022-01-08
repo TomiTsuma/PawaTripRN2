@@ -8,10 +8,9 @@ import TabNavigator from '..';
 const RootNavigator = () => {
   return (
     <NavigationContainer>
-      <ImageBackground source = {{logo}}
             style = {{width:"100%", height:"100%"}}>
       <TabNavigator />
-      </ImageBackground>
+     
     </NavigationContainer>
   );
 };

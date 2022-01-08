@@ -8,29 +8,30 @@ import { database } from '../firebase';
 import { auth } from '../firebase';
 import { ref, set } from 'firebase/database';
 import {useDispatch, useSelector} from 'react-redux';
+import { setUserId } from '../slices/userSlice';
 import { setUser } from '../slices/navSlice';
 import { store } from '../store';
 import navSlice from '../slices/navSlice';
 
 const IdScreen = () => {
     const [id, setID] = useState('');
+    const user = String(auth.currentUser.email).split('@')[0];
     const dispatch = useDispatch(); 
-    const u = useSelector((state) => state.user)    
+       
     
     const setIDNumber = () =>{
-        console.log(u.currentUsr);
-        set(ref(database, 'users/'+ String(u.currentUsr)), {
+        set(ref(database, 'user/'+ user), {
             IDNumber: id
           });  
-
-
-          const navigation = useNavigation()
-
-          React.useEffect(() => {
-           
-                navigation.replace("Home")
-              
+          dispatch(
+            setUserId({
+              usrId:id
             })
+          );
+
+     
+
+         
     }
     
 

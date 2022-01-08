@@ -18,20 +18,20 @@ const NavigateCard = () => {
                 
             <View style={styles.container2}>
             <Image source = {curr_loc}
-                   style={{width: 20, height: 20,marginTop:20, marginStart:20}}/>  
+                   style={{width: 30, height: 30,marginTop:20, marginStart:20}}/>  
             <Image source = {transition}
-                   style={{width: 3, height: 50,marginStart:27}}/>   
+                   style={{width: 4, height: 50,marginStart:33}}/>   
             <Image source = {dest}
-                   style={{width: 20, height: 28,marginStart:20}}/>     
+                   style={{width: 30, height: 40,marginStart:20}}/>     
             </View>
             <View style={styles.container3}>
-            <Text style={tw` text-sm mt-3` }>Pick up</Text>
+            <Text style={{fontSize:17,marginTop:10}}>Pick up</Text>
             <TouchableOpacity>
-            <Text style={tw` text-sm mb-5` }>Current Location</Text>
+            <Text style={{fontSize:20}}>Current Location</Text>
             </TouchableOpacity>
-            <Text style={tw` text-sm mt-3` }>Drop off</Text>
+            <Text style={{fontSize:17, marginTop:40} }>Drop off</Text>
             <TouchableOpacity>
-            <Text style={tw`text-sm` }>Destination</Text>
+            <Text style={{fontSize:20}}>Destination</Text>
             </TouchableOpacity>
 
             </View>

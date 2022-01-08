@@ -13,6 +13,8 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import MapScreen from './screens/MapScreen.js';
 import BookingDetails from './screens/BookingDetails.js';
+import PhoneNumberScreen from './screens/PhoneNumberScreen.js';
+import ModeScreen from './screens/ModeScreen.js'
 
 
 export default function App() {
@@ -23,13 +25,13 @@ export default function App() {
     <NavigationContainer>
     <SafeAreaProvider>
      <Stack.Navigator>
-     <Stack.Screen
+     {/* <Stack.Screen
         name = 'TabNavigator'
         component = {TabNavigator}
         options = {{
           headerShown: false
         }}
-      />
+      /> */}
       {/* <Stack.Screen
       name='IdScreen'
       component = {IdScreen}
@@ -51,16 +53,30 @@ export default function App() {
         headerShown: false
       }}
       /> */}
-      {/* <Stack.Screen
+      <Stack.Screen
       name='RideDetails'
       component = {RideDetails}
       options = {{
         headerShown: false
       }}
-      /> */}
+      />
       {/* <Stack.Screen
       name='BookingDetails'
       component = {BookingDetails}
+      options = {{
+        headerShown: false
+      }}
+      /> */}
+      {/* <Stack.Screen
+      name='PhoneNumber'
+      component = {PhoneNumberScreen}
+      options = {{
+        headerShown: false
+      }}
+      /> */}
+      {/* <Stack.Screen
+      name='ModeScreen'
+      component = {ModeScreen}
       options = {{
         headerShown: false
       }}

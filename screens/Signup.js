@@ -23,7 +23,7 @@ const Signup = () => {
         createUserWithEmailAndPassword(auth, email, pwd)
         .then(userCredentials => {
           const user = userCredentials.user;
-          set(ref(database, 'users/'+ (email.split('@')[0])), {
+          set(ref(database, 'user/'+ (email.split('@')[0])), {
             Email: email,
             Name: name
           });  
