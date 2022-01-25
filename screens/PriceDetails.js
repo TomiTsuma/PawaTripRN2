@@ -9,9 +9,11 @@ import loc from '../assets/loc.png';
 
 const PriceDetails = () => {
     return (
+
         <View style={{width:'100%',height:'100%'}}>
-            <ImageBackground source={back} 
-            style={{width:'100%',height:'100%'}}>
+            <ImageBackground
+        source={back}
+        style={{ width: "100%", height: "100%"}}>
                 <Text style={styles.title}>Ride Details</Text>
 
                 <ImageBackground source={pricebkg}
@@ -56,7 +58,7 @@ const PriceDetails = () => {
                         <Text style={{color:'#FFFFFF',alignSelf:'center',fontSize:25}}>Confirm</Text>
                     </ImageBackground>
                     </TouchableOpacity>
-            </ImageBackground>
+                    </ImageBackground>
         </View>
     )
 }

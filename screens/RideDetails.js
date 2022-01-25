@@ -7,13 +7,12 @@ import bkg from '../assets/driver_background.png'
 import carpoolersbkg from '../assets/carpooler_background.png'
 import plus from '../assets/plus.png'
 import minus from '../assets/minus.png'
-import back from '../assets/back.png'
 import NavigateCard from './components/NavigateCard';
 import { TextInput } from 'react-native-gesture-handler';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 
-const RideDetails = () => {
+const RideDetails = ({navigation}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   var [dateTimeMode, setTimeDateMode] = useState('');
   
@@ -35,7 +34,7 @@ const RideDetails = () => {
  
 
 
-  const showDatePicker=()=>{
+  const showDatePicker=({navigation})=>{
     setDatePickerVisibility(true);
   };
 
@@ -58,10 +57,10 @@ const RideDetails = () => {
 return (
     
     <SafeAreaView style={{ width: "100%", height: "100%" }}>
+      
       <ImageBackground
         source={back}
         style={{ width: "100%", height: "100%"}}>
-
       
       <Text style={styles.title}>Ride Details</Text>
       <View style={{ width: "100%", height: "100%", alignItems: 'center', marginTop: 40, marginBottom: 10, flexDirection: "column" }}>
@@ -121,11 +120,10 @@ return (
   </View>
 
 </ImageBackground>
-<Button title={'Continue'} style={{marginTop:50,width:50}}></Button>
+<Button title={'Continue'} onPress={() =>{navigation.navigate('BookingDetails')}} style={{marginTop:50,width:50}}></Button>
 
 
       </View>
-
       </ImageBackground>
     </SafeAreaView>
   )

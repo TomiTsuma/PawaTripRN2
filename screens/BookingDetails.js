@@ -17,10 +17,9 @@ import driver_background from '../assets/driver_background.png'
 const BookingDetails = () => {
     return (
         <View>
-             <ImageBackground 
-            source={back}
-            style={{width:'100%',height:'100%',alignItems:'center'}}>
-
+             <ImageBackground
+        source={back}
+        style={{ width: "100%", height: "100%"}}>
             <Text style={styles.title}>Carpooler Details</Text>
 
             <ImageBackground source={pricebkg}
@@ -100,10 +99,11 @@ const BookingDetails = () => {
                     <Text style={{alignSelf:'center'}}>Ksh. 150 per seat</Text>
 
                     </View> 
+                    <Button title={'Continue'}  style={{marginTop:50,width:50}}></Button>
+
 
             </ImageBackground>
-                
-            </ImageBackground> 
+            </ImageBackground>
         </View>
     )
 }

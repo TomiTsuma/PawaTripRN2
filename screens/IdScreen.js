@@ -13,7 +13,7 @@ import { setUser } from '../slices/navSlice';
 import { store } from '../store';
 import navSlice from '../slices/navSlice';
 
-const IdScreen = () => {
+const IdScreen = ({navigation}) => {
     const [id, setID] = useState('');
     const user = String(auth.currentUser.email).split('@')[0];
     const dispatch = useDispatch(); 
@@ -28,6 +28,7 @@ const IdScreen = () => {
               usrId:id
             })
           );
+          navigation.navigate('PhoneNumberScreen')
 
      
 

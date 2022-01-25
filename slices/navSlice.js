@@ -5,13 +5,15 @@ const initialState = {
     origin: { 
         coordinates:{
             latitude:"",
-            longitude:""
+            longitude:"",
+            name:"Current Position"
         }
     },
     destination: {
         coordinates:{
-            latitude:"",
+            latitude:"0.0",
             longitude:"",
+            name:"Destination"
         }
     },
     travelTimeInformation : null,

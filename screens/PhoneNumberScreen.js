@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/core';
 import {set, ref} from 'firebase/database'
 
 
-const PhoneNumberScreen = () => {
+const PhoneNumberScreen = ({navigation}) => {
     const [phone, setPhone] = useState('');
     const dispatch = useDispatch();
     const user = String(auth.currentUser.email).split('@')[0];
@@ -24,6 +24,7 @@ const PhoneNumberScreen = () => {
               usrPhone:phone
             })
           ); 
+          navigation.navigate('ModeScreen')
         
     }
     

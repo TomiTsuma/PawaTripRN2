@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,44 +16,49 @@ import MapScreen from './screens/MapScreen.js';
 import BookingDetails from './screens/BookingDetails.js';
 import PhoneNumberScreen from './screens/PhoneNumberScreen.js';
 import ModeScreen from './screens/ModeScreen.js'
+import Map from './screens/components/Map.js';
+import Rides from './screens/Rides.js';
 
 
 export default function App() {
   const Stack = createStackNavigator();
 
   return (
+    
     <Provider store={store}>
     <NavigationContainer>
     <SafeAreaProvider>
      <Stack.Navigator>
      {/* <Stack.Screen
-        name = 'TabNavigator'
-        component = {TabNavigator}
-        options = {{
-          headerShown: false
-        }}
-      /> */}
-      {/* <Stack.Screen
-      name='IdScreen'
-      component = {IdScreen}
+      name='Rides'
+      component = {Rides}
       options = {{
         headerShown: false
       }}
-      /> */}
-      {/* <Stack.Screen
-      name='PriceDetails'
-      component = {PriceDetails}
-      options = {{
-        headerShown: false
-      }}
-      /> */}
-      {/* <Stack.Screen
+      />  */}
+     <Stack.Screen
       name='MapScreen'
       component = {MapScreen}
       options = {{
         headerShown: false
       }}
-      /> */}
+      />
+     <Stack.Screen
+        name = 'TabNavigator'
+        component = {TabNavigator}
+        options = {{
+          headerShown: false
+        }}
+      /> 
+       <Stack.Screen
+      name='IdScreen'
+      component = {IdScreen}
+      options = {{
+        headerShown: false
+      }}
+      /> 
+      
+    
       <Stack.Screen
       name='RideDetails'
       component = {RideDetails}
@@ -60,27 +66,27 @@ export default function App() {
         headerShown: false
       }}
       />
-      {/* <Stack.Screen
+       <Stack.Screen
       name='BookingDetails'
       component = {BookingDetails}
       options = {{
         headerShown: false
       }}
-      /> */}
-      {/* <Stack.Screen
-      name='PhoneNumber'
+      /> 
+      <Stack.Screen
+      name='PhoneNumberScreen'
       component = {PhoneNumberScreen}
       options = {{
         headerShown: false
       }}
-      /> */}
-      {/* <Stack.Screen
+      /> 
+      <Stack.Screen
       name='ModeScreen'
       component = {ModeScreen}
       options = {{
         headerShown: false
       }}
-      /> */}
+      />
     </Stack.Navigator>
     </SafeAreaProvider>
     </NavigationContainer>

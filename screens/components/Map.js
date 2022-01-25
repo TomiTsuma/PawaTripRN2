@@ -6,7 +6,7 @@ import { setOrigin } from '../../slices/navSlice'
 //import GetLocation from 'react-native-get-location'
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import Geolocation from 'react-native-geolocation-service'
-
+import MapView from 'react-native-maps';
 
 
 MapboxGL.setAccessToken('pk.eyJ1IjoicGF3YXRyaXAxIiwiYSI6ImNreHl1YWwxazJ5bmMzMnA0dmNsMjgzMDIifQ.1q3P-KgFsKWEmuqY0ttuCw');
@@ -52,6 +52,8 @@ const Map = () => {
   const getCurrLocation =()=>{
       Geolocation.getCurrentPosition(
         position => {
+          setCurrentLatitude(position.coords.latitude)
+          setCurrentLongitude(position.coords.setCurrentLongitude)
           console.warn(position)
           dispatch(
             setOrigin({
@@ -69,16 +71,17 @@ const Map = () => {
 
   
     return (
-<MapboxGL.MapView
-    style={tw`flex-1 `}
-    onPress={getCurrLocation}>
 
-      <MapboxGL.Camera
-        zoomLevel={12}
-        centerCoordinate={[36.7442,1.3939]}
-        on
-      ></MapboxGL.Camera>
-    </MapboxGL.MapView>
+
+    <MapView
+    style={{flex:1}}
+    initialRegion={{
+      latitude: -1.21989,
+      longitude: 36.8892117,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+  />
       
     )
 }

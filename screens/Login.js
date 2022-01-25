@@ -22,12 +22,15 @@ GoogleSignin.configure({
   webClientId: '222655618418-56opdtgrudrssbflgolm41t3dgffki5t.apps.googleusercontent.com',
 }); 
 
-const Login = () => {
+const Login = ({navigation}) => {
+
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const u = useSelector((state) => state.user)
+    const u = useSelector((state) => state.user);
 
+   
 
     const onGoogleButtonPress = () => {
         alert("called")
@@ -68,6 +71,7 @@ const Login = () => {
               userEmail:user.email
             })
           );
+          navigation.navigate('IdScreen')
     
           console.log(u.currentUsr)
         })
