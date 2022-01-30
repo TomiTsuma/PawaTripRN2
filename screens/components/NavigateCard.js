@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     container1:{
         flexDirection :"row",
         width:300,
-        height:300
         
     },
     container2:{

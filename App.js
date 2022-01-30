@@ -18,6 +18,7 @@ import PhoneNumberScreen from './screens/PhoneNumberScreen.js';
 import ModeScreen from './screens/ModeScreen.js'
 import Map from './screens/components/Map.js';
 import Rides from './screens/Rides.js';
+import CarpoolerList from './screens/CarpoolerList.js';
 
 
 export default function App() {
@@ -29,13 +30,6 @@ export default function App() {
     <NavigationContainer>
     <SafeAreaProvider>
      <Stack.Navigator>
-     {/* <Stack.Screen
-      name='Rides'
-      component = {Rides}
-      options = {{
-        headerShown: false
-      }}
-      />  */}
      <Stack.Screen
       name='MapScreen'
       component = {MapScreen}
@@ -44,19 +38,28 @@ export default function App() {
       }}
       />
      <Stack.Screen
-        name = 'TabNavigator'
-        component = {TabNavigator}
-        options = {{
-          headerShown: false
-        }}
-      /> 
-       <Stack.Screen
       name='IdScreen'
       component = {IdScreen}
       options = {{
         headerShown: false
       }}
       /> 
+     {/* <Stack.Screen
+      name='CarpoolerList'
+      component = {CarpoolerList}
+      options = {{
+        headerShown: false
+      }}
+      />  */}
+     
+     <Stack.Screen
+        name = 'TabNavigator'
+        component = {TabNavigator}
+        options = {{
+          headerShown: false
+        }}
+      /> 
+      
       
     
       <Stack.Screen

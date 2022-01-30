@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { database } from '../firebase';
 import { auth } from '../firebase';
-import { ref, set } from 'firebase/database';
+import { ref, set, onValue, get, child } from 'firebase/database';
 import {useDispatch, useSelector} from 'react-redux';
 import { setUserId } from '../slices/userSlice';
 import { setUser } from '../slices/navSlice';
@@ -15,10 +15,36 @@ import navSlice from '../slices/navSlice';
 
 const IdScreen = ({navigation}) => {
     const [id, setID] = useState('');
-    const user = String(auth.currentUser.email).split('@')[0];
+
+    // const user = String(auth.currentUser.email).split('@')[0];
     const dispatch = useDispatch(); 
-       
+    const usr =[]
     
+       
+    const getCarpoolers =()=>{
+        const users= ref(database, `user`)
+ 
+        onValue(users, (snapshot)=>{
+          const userObject = snapshot.forEach(item=>{
+            const temp =item.val();
+            usr.push(item)
+            console.log(item.child("Email"))
+          })
+          
+          // const names = snapshot.child('Name').val();
+          // const originLat = snapshot.child('SourceLatitude').val();
+          // const originLng = snapshot.child('SourceLongitude').val();
+          // const destinationLat = snapshot.child('DestinationLatitude').val();
+          // const DestinationLng = snapshot.child('DestinationLongitude').val();
+          // const phone = snapshot.child('PhoneNumber').val();
+          // usr = setUsr(userObject)
+          // console.log(userObject)
+        })
+        // console.log(usr[0]("Email"))
+        usr.forEach(item=>{
+          console.log(item.child("DestinationLatitude"))
+        })
+    }
     const setIDNumber = () =>{
         set(ref(database, 'user/'+ user), {
             IDNumber: id
@@ -58,7 +84,7 @@ const IdScreen = ({navigation}) => {
             </View>
             <Button
                     title="Continue"
-                    onPress ={setIDNumber}></Button>
+                    onPress ={getCarpoolers}></Button>
         </SafeAreaView>
     )
 }

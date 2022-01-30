@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image, ImageBackground} from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, Text, View, SafeAreaView, Image, ImageBackground, TouchableOpacity} from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 // import { GOOGLE_MAPS_API_KEY } from "@env"
 import tw from "tailwind-react-native-classnames";
@@ -12,9 +12,9 @@ import MapView   from 'react-native-maps';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice'
 import axios from 'axios'
-import Math from 'Math'
 import { auth, database } from '../firebase';
 import {ref, get, onValue} from 'firebase/database'
+import { Button } from 'react-native-elements/dist/buttons/Button';
 
 
 
@@ -22,35 +22,29 @@ const MapScreen = () => {
   const [currLat,setCurrLat] = useState(32.5);
   const [currLng,setCurrLng] = useState(-1.3);
   const [usrPoints, setUsrPoints] = useState(); 
+  const usr =[]
+
 
 
   function getRadialDistance (latitude, longitude){
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(latitude-currLat);  // deg2rad below
-    var dLon = deg2rad(longitude-currLng); 
-    var a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; // Distance in km
-    return d;
-
+    console.log(latitude)
+    console.log(longitude)
+    console.log(37.444-latitude)
   }
   const getCarpoolers =()=>{
-      const users= ref(database, 'users') 
-      onValue(users, (snapshot)=>{
-        const userObject = snapshot.val();
-        // const names = snapshot.child('Name').val();
-        // const originLat = snapshot.child('SourceLatitude').val();
-        // const originLng = snapshot.child('SourceLongitude').val();
-        // const destinationLat = snapshot.child('DestinationLatitude').val();
-        // const DestinationLng = snapshot.child('DestinationLongitude').val();
-        // const phone = snapshot.child('PhoneNumber').val();
-        
+    const users= ref(database, `user`)
+
+    onValue(users, (snapshot)=>{
+
+      snapshot.forEach(item=>{
+        usr.push(item)
       })
-  }
+     
+    })
+    usr.forEach(item=>{
+      getRadialDistance(item.child("SourceLatitude"),item.child("SourceLongititude"))
+    })
+}
 
 
   const getDirections =(srcLat, srcLng, destLat, destLng)=>{
@@ -134,10 +128,20 @@ const MapScreen = () => {
           style={{ width: 80, height: 5, marginTop: 3, alignSelf: 'center' }}></Image>
           
         <NavigateCard />
+
+         <TouchableOpacity 
+         style={{ width: 150,height: 30,backgroundColor:'#000', marginTop:0,alignSelf:'center'}}
+         onPress={getCarpoolers}>
+
         <ImageBackground source={button}
-          style={{ width: 150, height: 30,position:'absolute', marginTop:180,alignSelf:'center'}}>
-          <Text style={{color:"#FFFFFF", alignSelf:'center',fontSize:20}} onPress={()=>navigation.navigate('PriceDetails')}>Continue</Text>
+        style={{ width: 150, height: 30, marginTop:0,alignSelf:'center'}}
+          >
+
+          <Text style={{color:"#FFFFFF", alignSelf:'center',fontSize:20}} onPress={getCarpoolers}>Continue</Text>
+
         </ImageBackground>
+        </TouchableOpacity>
+
       </View></>
   )
 }
