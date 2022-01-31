@@ -16,7 +16,13 @@ const initialState = {
             name:"Destination"
         }
     },
-    travelTimeInformation : null,
+    travelTimeInformation :{
+        information:{
+            distance:'',
+            time:''
+        }
+    },
+    
 }
 
 
