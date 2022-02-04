@@ -2,10 +2,10 @@ import { createSlice} from "@reduxjs/toolkit";
 
 
 const initialState={
-    currentUsr:"em",
+    currentUsr:"",
     usrPhone:"",
     usrId:"",
-    usrMode:"",
+    usrMode:"Driver",
     usrEmail:""
 }
 

@@ -19,6 +19,7 @@ import ModeScreen from './screens/ModeScreen.js'
 import Map from './screens/components/Map.js';
 import Rides from './screens/Rides.js';
 import CarpoolerList from './screens/CarpoolerList.js';
+import Login from './screens/Login.js';
 
 
 export default function App() {
@@ -29,7 +30,14 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
     <SafeAreaProvider>
-     <Stack.Navigator>
+     <Stack.Navigator initialRouteName='MapScreen'>
+     <Stack.Screen
+      name='Index'
+      component = {Index}
+      options = {{
+        headerShown: false
+      }}
+      />
      <Stack.Screen
       name='MapScreen'
       component = {MapScreen}
@@ -44,13 +52,13 @@ export default function App() {
         headerShown: false
       }}
       /> 
-     {/* <Stack.Screen
+     <Stack.Screen
       name='CarpoolerList'
       component = {CarpoolerList}
       options = {{
         headerShown: false
       }}
-      />  */}
+      /> 
      
      <Stack.Screen
         name = 'TabNavigator'

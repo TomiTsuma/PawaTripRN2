@@ -104,7 +104,7 @@ const Login = ({navigation}) => {
   title="Login"
   onPress={handleLogin}></Button>
 <Text
-  style={{marginTop:20}}>
+  style={{marginTop:20,fontFamily:'Gotham Book'}}>
       OR
   </Text>
 
@@ -175,11 +175,13 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         marginLeft: 20,
+        fontFamily:'Gilroy ExtraBold'
       },
       
       forgot_button: {
         height: 30,
         marginBottom: 1,
+        fontFamily:'Gotham Book'
       },
       loginbuttons: {
           flexDirection:"row",

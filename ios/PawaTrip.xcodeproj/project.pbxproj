@@ -14,6 +14,12 @@
 		96905EF65AED1B983A6B3ABC /* libPods-PawaTrip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-PawaTrip.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		FCBB1DA18F8F498BAADC912D /* Gilroy ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A0178E2447A18A699BFA /* Gilroy ExtraBold.ttf */; };
+		554EA7B3A5FA4AB897084A7B /* Gotham Black Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6AA4CF807A442ABE2EF92A /* Gotham Black Regular.ttf */; };
+		F57F1F63A5AE497787594FA4 /* Gotham Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3D96D1614B104F04AA596243 /* Gotham Bold.otf */; };
+		09C793B59008489B921ACAD6 /* Gotham Book Font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4D0BE9D351664544B06BCF96 /* Gotham Book Font.otf */; };
+		B53E4400A42B448FA3D5ACD3 /* Gotham Light Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BB87788CC5B4C2F8FCB1F7C /* Gotham Light Regular.otf */; };
+		1B6B0AF932D24F968C19BFC1 /* Gotham Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7A320F17357A4566882A073E /* Gotham Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,12 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-PawaTrip/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		1C78A0178E2447A18A699BFA /* Gilroy ExtraBold.ttf */ = {isa = PBXFileReference; name = "Gilroy ExtraBold.ttf"; path = "../assets/fonts/Gilroy ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2E6AA4CF807A442ABE2EF92A /* Gotham Black Regular.ttf */ = {isa = PBXFileReference; name = "Gotham Black Regular.ttf"; path = "../assets/fonts/Gotham Black Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3D96D1614B104F04AA596243 /* Gotham Bold.otf */ = {isa = PBXFileReference; name = "Gotham Bold.otf"; path = "../assets/fonts/Gotham Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4D0BE9D351664544B06BCF96 /* Gotham Book Font.otf */ = {isa = PBXFileReference; name = "Gotham Book Font.otf"; path = "../assets/fonts/Gotham Book Font.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0BB87788CC5B4C2F8FCB1F7C /* Gotham Light Regular.otf */ = {isa = PBXFileReference; name = "Gotham Light Regular.otf"; path = "../assets/fonts/Gotham Light Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7A320F17357A4566882A073E /* Gotham Medium.otf */ = {isa = PBXFileReference; name = "Gotham Medium.otf"; path = "../assets/fonts/Gotham Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +97,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				064D0A732BC243F4B8A84C87 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -132,6 +145,20 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		064D0A732BC243F4B8A84C87 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1C78A0178E2447A18A699BFA /* Gilroy ExtraBold.ttf */,
+				2E6AA4CF807A442ABE2EF92A /* Gotham Black Regular.ttf */,
+				3D96D1614B104F04AA596243 /* Gotham Bold.otf */,
+				4D0BE9D351664544B06BCF96 /* Gotham Book Font.otf */,
+				0BB87788CC5B4C2F8FCB1F7C /* Gotham Light Regular.otf */,
+				7A320F17357A4566882A073E /* Gotham Medium.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -196,6 +223,12 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				FCBB1DA18F8F498BAADC912D /* Gilroy ExtraBold.ttf in Resources */,
+				554EA7B3A5FA4AB897084A7B /* Gotham Black Regular.ttf in Resources */,
+				F57F1F63A5AE497787594FA4 /* Gotham Bold.otf in Resources */,
+				09C793B59008489B921ACAD6 /* Gotham Book Font.otf in Resources */,
+				B53E4400A42B448FA3D5ACD3 /* Gotham Light Regular.otf in Resources */,
+				1B6B0AF932D24F968C19BFC1 /* Gotham Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

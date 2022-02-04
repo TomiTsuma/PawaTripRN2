@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useLayoutEffect} from 'react'
 import { StyleSheet, Text, View, SafeAreaView, Image, ImageBackground, TouchableOpacity, Platform, PermissionsAndroid} from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import decodePolyline from 'decode-google-map-polyline'
@@ -15,6 +15,7 @@ import MapboxGL from '@react-native-mapbox-gl/maps';
 import MapView, {Polyline}   from 'react-native-maps';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice'
+
 import axios from 'axios'
 import { auth, database } from '../firebase';
 import {ref, get,set, onValue} from 'firebase/database'
@@ -27,13 +28,36 @@ const MapScreen = () => {
   const [destLat,setDestLat] = useState(-1.39390);
   const [destLng,setDestLng] = useState(36.7442);
   var [usrPoints, setUsrPoints] = useState([]); 
+  const [dbUser, setDbUsr] = useState([])
   var usrCoords=[];
-  const usr =[]
+  let usr =[]
   const [locationStatus, setLocationStatus] = useState('');
   const users= ref(database, `user`)
   const user = auth.currentUser
+  var carpoolerList = []
+  const userDetails = useSelector((state) => state.user);
+  var viableCarpoolers = []
+  dispatch = useDispatch();
 
+
+
+
+ 
   useEffect(()=>{
+    const users= ref(database, `user`)
+    onValue(users, (snapshot)=>{
+      snapshot.forEach(item=>{
+        if(String(item.child('Mode').val()) != userDetails.usrMode)
+        {        
+         //Do nothing
+          usr.push(item)
+
+        }
+       
+      })
+      setDbUsr(usr)
+    })
+
     const requestLocationPermission = async () =>{
       if(Platform.OS === 'ios'){
         getOneTimeLocation();
@@ -80,6 +104,7 @@ const MapScreen = () => {
 
         setCurrLng(currentLongitude);
         setCurrLat(currentLatitude);
+        setOriginCoords(currentLatitude,currentLongitude)
       },
       (error)=>{
         setLocationStatus(error.message);
@@ -133,7 +158,7 @@ const MapScreen = () => {
   }
 
 
-  const getDirections =(srcLat, srcLng, destLat, destLng)=> {
+  const getMapDirection =(srcLat, srcLng, destLat, destLng)=> {
         var config = {
           method: 'get',
           url: 'https://maps.googleapis.com/maps/api/directions/json?origin='+srcLat+','+srcLng+'&destination='+destLat+','+destLng+ '&mode=driving&key=AIzaSyB0VZQy9-x8UEsjC6sTrQbRe5UohJn8fH0',
@@ -141,9 +166,7 @@ const MapScreen = () => {
         };
         axios(config)
         .then(function (response) {
-        console.log(response.data.routes[0].legs[0].steps[0].polyline)
         var coords = (decodePolyline((response.data.routes[0].legs[0].steps[0].polyline.points)))
-        console.log(coords)
         var newcoords = []
         coords.forEach(item=>{
           item['latitude']=item['lat']
@@ -151,6 +174,7 @@ const MapScreen = () => {
           delete item['lat']
           delete item['lng']
           newcoords.push({'latitude':item['latitude'],'longitude':item['longitude']})
+          usrCoords.push(newcoords)
           })
         return newcoords;
     })
@@ -158,17 +182,56 @@ const MapScreen = () => {
       console.log(error);
     });
   }
-  const getCarpoolers =()=>{
-    const users= ref(database, `user`)
-
-    onValue(users, (snapshot)=>{
+  
+  const getViablePassengers=()=>{
+  
+    let viableSource = false
+    let viableDestination = false
+    dbUser.forEach(dbUsr =>{
       
-      snapshot.forEach(item=>{
-        usr.push(item)
+    usrCoords.forEach(point =>{
+      console.log(point)
+      if(getRadialDistance(point.lat,point.lng,dbUsr.SourceLatitude,dbUsr.SourceLongititude)<250)
+      {
+        viableSource = true
+        if(getRadialDistance(point.lat,point.lng,dbUsr.DestinationLatitude,dbUsr.DestinationLongititude)<250)
+        {
+          viableDestination= true
+          viableCarpoolers.push(dbUsr)
+
+        }
+      }
+      else{
+      }
+    })
+  })
+  }
+
+
+  const getViableDrivers=()=>{
+
+    usr.forEach(dbUsr =>{
+      let viableSource = false
+      let viableDestination = false
+      var pts = getDirections(dbUsr.SourceLatitude,dbUsr.SourceLongititude,dbUsr.DestinationLatitude.dbUsr.DestinationLongititude)
+      pts.forEach(pt =>{
+        if(getRadialDistance(pt.lat,point.lng,currLat,currLng)<250)
+      {
+        viableSource = true
+        if(getRadialDistance(point.lat,point.lng,dbUsr.DestinationLatitude,dbUsr.DestinationLongititude)<250)
+        {
+          viableDestination=true
+        }
+      }
+
       })
-     
+      if(viableSource === true && viableDestination === true)
+      {
+        viableCarpoolers.push(dbUsr)
+      }
     })
   }
+
   const setOriginCoords = () =>{
     set(ref(database, 'user/'+ user), {
         SourceLatitude: currLat,
@@ -183,26 +246,6 @@ const MapScreen = () => {
   }
 
 
-
-  // const getDirections =(srcLat, srcLng, destLat, destLng)=>{
-  //   console.log(srcLat)
-  //   console.log(srcLng)
-  //   console.log(destLat)
-  //   console.log(destLng)
-
-
-
-  //   axios.get("https://maps.googleapis.com/maps/api/directions/json?origin=" + srcLat + "," + srcLng + "&destination=" + destLat + "," + destLng + "&mode=driving&key=AIzaSyB0VZQy9-x8UEsjC6sTrQbRe5UohJn8fH0")
-  //         .then(response => {
-  //           // console.log(response)
-  //             console.log(decodePolyline(response.data.routes[0].legs[0].steps.polyline.points))
-              
-           
-  //         })
-
-         
-  // }
-  dispatch = useDispatch();
   return (
     
     <><View style={tw`h-2/3`}>
@@ -216,11 +259,11 @@ const MapScreen = () => {
       longitudeDelta: 0.0421,
     }}
   >
-    <Polyline
+    {/* <Polyline
 		coordinates={usrPoints}
 		strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
 		strokeWidth={6}
-	/>
+	/> */}
     
     </MapView>
       
@@ -250,11 +293,23 @@ const MapScreen = () => {
         fetchDetails={true}
         debounce={400}
         onPress={(data, details = null) => {
+          //Set current page destination coords
           setDestLat(JSON.stringify(details.geometry.location.lat))
           setDestLng(JSON.stringify(details.geometry.location.lng))
+          //Send destnation coords to firebase
           setDestinationCoords(destLat,destLng)
-          setUsrPoints(getDirections(currLat,currLng,destLat,destLng))
-          
+
+          //Get driver directions
+          if(userDetails.usrMode === 'Driver')
+          {
+            console.log('Maps destination set for driver, currently fetching directions')
+            setUsrPoints(getMapDirection(currLat,currLng,destLat,destLng))
+            getViablePassengers()
+          }
+          else{
+            console.log('Maps destination set for passenger, currently fetching the viable drivers')
+            getViableDrivers()
+          }
 
           dispatch(
             setDestination({
@@ -287,7 +342,7 @@ const MapScreen = () => {
          style={{ width: 150,height: 30, marginTop:0,alignSelf:'center'}}
          onPress={getOneTimeLocation}>
 
-          <Text style={{color:"#FFFFFF", alignSelf:'center',fontSize:20}} onPress={getCarpoolers}>Continue</Text>
+          <Text style={{color:"#FFFFFF", alignSelf:'center',fontSize:20}} >Continue</Text>
           </TouchableOpacity>
 
         </ImageBackground>

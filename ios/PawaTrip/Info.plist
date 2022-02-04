@@ -49,7 +49,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>UIStatusBarStyle</key>
-  <string>UIStatusBarStyleDefault</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gilroy ExtraBold.ttf</string>
+		<string>Gotham Black Regular.ttf</string>
+		<string>Gotham Bold.otf</string>
+		<string>Gotham Book Font.otf</string>
+		<string>Gotham Light Regular.otf</string>
+		<string>Gotham Medium.otf</string>
+	</array>
 </dict>
 </plist>
