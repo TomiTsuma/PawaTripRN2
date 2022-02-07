@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,ImageBackground,StyleSheet, Text,Image,View,TextInput,TouchableOpacity, SafeAreaView} from 'react-native'
+import { ImageBackground,StyleSheet, Text,Image,View,TextInput,TouchableOpacity, SafeAreaView} from 'react-native'
 import tw from 'tailwind-react-native-classnames'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
@@ -7,12 +7,14 @@ import logo from '../assets/logo.png';
 //import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser, setUserEmail } from '../slices/userSlice'
-
+import { RFValue } from 'react-native-responsive-fontsize';
 import 'react-native-gesture-handler';
 import { auth } from '../firebase';
 import { database } from '../firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import Input from './components/Input/input';
+import Button from './components/Button/button';
 
 
 
@@ -82,29 +84,12 @@ const Login = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
    
-<View style={styles.inputView2}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Email."
-    placeholderTextColor="#003f5c"
-    onChangeText={(email) => setEmail(email)}
-  />
-</View>
- 
-<View style={styles.inputView}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Password."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(password) => setPassword(password)}
-  />
-</View>
-<Button
-  title="Login"
-  onPress={handleLogin}></Button>
+<Input placeholder='Email'></Input>
+<Input placeholder='Password'></Input>
+<Button title='LOGIN'></Button>
+
 <Text
-  style={{marginTop:20,fontFamily:'Gotham Book'}}>
+  style={{marginTop:20,fontFamily:'Gotham Black Regular'}}>
       OR
   </Text>
 
@@ -155,33 +140,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#f0f1f5",
         borderRadius: 20,
         width: "80%",
-        height: 45,
-        marginBottom: 20,
-        alignItems: "center",
-      },
-      inputView2: {
-        backgroundColor: "#f0f1f5",
-        borderRadius: 20,
-        width: "80%",
-        height: 45,
-        marginBottom: 20,
-        marginTop:50,
-        alignItems: "center",
       },
       
       TextInput: {
-        height: 50,
-        width:300,
-        flex: 1,
-        padding: 10,
-        marginLeft: 20,
-        fontFamily:'Gilroy ExtraBold'
+        fontFamily:'Gilroy ExtraBold',
+        fontSize:RFValue(15),
+        alignSelf:'center'
       },
       
       forgot_button: {
         height: 30,
         marginBottom: 1,
-        fontFamily:'Gotham Book'
+        fontFamily:'Gilroy ExtraBold'
       },
       loginbuttons: {
           flexDirection:"row",

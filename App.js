@@ -20,6 +20,7 @@ import Map from './screens/components/Map.js';
 import Rides from './screens/Rides.js';
 import CarpoolerList from './screens/CarpoolerList.js';
 import Login from './screens/Login.js';
+import CarpoolerCard from './screens/components/CarpoolerCard.js';
 
 
 export default function App() {
@@ -30,7 +31,7 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
     <SafeAreaProvider>
-     <Stack.Navigator initialRouteName='MapScreen'>
+     <Stack.Navigator initialRouteName='PriceDetails'>
      <Stack.Screen
       name='Index'
       component = {Index}
@@ -67,8 +68,20 @@ export default function App() {
           headerShown: false
         }}
       /> 
-      
-      
+      <Stack.Screen
+        name = 'CarpoolerCard'
+        component = {CarpoolerCard}
+        options = {{
+          headerShown: false
+        }}
+      /> 
+      <Stack.Screen
+      name='PriceDetails'
+      component = {PriceDetails}
+      options = {{
+        headerShown: false
+      }}
+      />
     
       <Stack.Screen
       name='RideDetails'

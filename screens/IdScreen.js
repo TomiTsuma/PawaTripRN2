@@ -2,7 +2,6 @@ import React from 'react'
 import { Image, SafeAreaView,StyleSheet, Text,TextInput, View } from 'react-native'
 import { useState } from 'react';
 import logo from '../assets/logo.png'; 
-import { Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { database } from '../firebase';
 import { auth } from '../firebase';
@@ -12,6 +11,9 @@ import { setUserId } from '../slices/userSlice';
 import { setUser } from '../slices/navSlice';
 import { store } from '../store';
 import navSlice from '../slices/navSlice';
+import { RFValue } from 'react-native-responsive-fontsize';
+import Input from './components/Input/input';
+import Button from './components/Button/button';
 
 const IdScreen = ({navigation}) => {
     const [id, setID] = useState('');
@@ -54,11 +56,7 @@ const IdScreen = ({navigation}) => {
               usrId:id
             })
           );
-          navigation.navigate('PhoneNumberScreen')
-
-     
-
-         
+          navigation.navigate('PhoneNumberScreen')     
     }
     
 
@@ -69,19 +67,9 @@ const IdScreen = ({navigation}) => {
             style={{width: "100%", height: "100%",margin:0,position:"absolute"}}>
         
         </Image>
-            <Text>Enter your ID number</Text>
+            <Text   style={{marginTop:20,fontSize:RFValue(18),fontFamily:'Gotham Black Regular'}}>Enter your ID number</Text>
 
-            <View style={styles.inputView}>
-                <Image source={{url:"https://img.favpng.com/0/21/17/computer-icons-encapsulated-postscript-png-favpng-zk6XjnBWuuvr8qsyftmhqM2xL.jpg"}}
-                 style={{width: 10, height: 10,margin:20}}>
-                    </Image>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder="Identification Number."
-                    placeholderTextColor="#003f5c"
-                    onChangeText={(id) => setID(id)}/>
-                
-            </View>
+           <Input placeholder='ID Number'></Input>
             <Button
                     title="Continue"
                     onPress ={getCarpoolers}></Button>

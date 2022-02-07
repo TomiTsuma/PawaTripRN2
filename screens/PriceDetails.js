@@ -1,10 +1,10 @@
 import React from 'react'
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View ,Image} from 'react-native'
-import { Button } from 'react-native-elements'
 import back from '../assets/back.png'
 import pricebkg from '../assets/pricebkg.png'
 import button from '../assets/button.png'
 import loc from '../assets/loc.png';
+import { RFValue } from 'react-native-responsive-fontsize'
  
 
 const PriceDetails = () => {
@@ -13,30 +13,31 @@ const PriceDetails = () => {
         <View style={{width:'100%',height:'100%'}}>
             <ImageBackground
         source={back}
-        style={{ width: "100%", height: "100%"}}>
+        style={{ width: "100%", height: "100%",alignItems:'center'}}>
                 <Text style={styles.title}>Ride Details</Text>
 
-                <ImageBackground source={pricebkg}
-                style={{width:260,height:270,alignSelf:'center',marginTop:100,alignItems:'center'}}>
-                    <Text style={{alignSelf:'center',marginTop:7}}>Recommended price</Text>
+                <View
+                style={{width:'70%',height:'40%',margin:'10%',backgroundColor:'#FFF',borderRadius:30,elevation:1,padding:'1%',alignItems:'center',justifyContent:'space-around'}}>
+                <Text style={{alignSelf:'center',fontFamily:'Gilroy ExtraBold',color:'#1E3193'}}>Recommended price</Text>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:30,marginTop:100}}>Ksh.</Text>
-                        <Text style={{fontSize:70,marginTop:60}}>50</Text>
+                        <Text style={{fontSize:RFValue(40),marginTop:60,fontFamily:'Gilroy ExtraBold',color:'#1E3193'}}>KSh. 50</Text>
                         </View>
                     
-                    <View style={{flexDirection:'row',margin:20}}>
-                        <TouchableOpacity>
-                            <ImageBackground source={button}
-                            style={{width:80,height:15,marginRight:20}}>
-                                <Text style={{color:'#ffffff',alignSelf:'center',fontSize:11}}>Agree</Text>
-                            </ImageBackground>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',marginHorizontal:'10%'}}>
+                        <TouchableOpacity
+                        style={{width:'35%',height:'30%',backgroundColor:'#008AD8',borderRadius:20,marginEnd:'10%'}}>
+                            <View
+                            style={{width:'100%',height:'100%',backgroundColor:''}}>
+                                <Text style={{color:'#ffffff',alignSelf:'center',fontSize:RFValue(12),fontFamily:'Gotham Book Font',marginTop:'4%'}}>Agree</Text>
+                            </View>
                             
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ImageBackground source={button}
-                            style={{width:80,height:15}}>
-                                <Text style={{color:'#ffffff',alignSelf:'center',fontSize:11}}>Change</Text>
-                            </ImageBackground>
+                        <TouchableOpacity
+                        style={{width:'35%',height:'30%',backgroundColor:'#008AD8',borderRadius:20}}>
+                            <View
+                            style={{width:'100%',height:'100%',backgroundColor:''}}>
+                                <Text style={{color:'#ffffff',alignSelf:'center',fontSize:RFValue(12),fontFamily:'Gotham Book Font',marginTop:'4%'}}>Change</Text>
+                            </View>
                             
                         </TouchableOpacity>
                     </View>
@@ -51,13 +52,8 @@ const PriceDetails = () => {
                     </View>
                     
 
-                </ImageBackground>
-                <TouchableOpacity>
-                <ImageBackground source={button}
-                    style={{width:200,height:40,alignSelf:'center',marginTop:50}}>
-                        <Text style={{color:'#FFFFFF',alignSelf:'center',fontSize:25}}>Confirm</Text>
-                    </ImageBackground>
-                    </TouchableOpacity>
+                </View>
+               <Button></Button>
                     </ImageBackground>
         </View>
     )
@@ -70,6 +66,7 @@ const styles = StyleSheet.create({
         color:'#ffffff',
         alignSelf:'center',
         marginTop:50,
-        fontSize:25
+        fontSize:RFValue(24),
+        fontFamily:'Gotham Black Regular'
       }
 })

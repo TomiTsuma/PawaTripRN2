@@ -12,16 +12,16 @@ const Tab = createMaterialTopTabNavigator();
 
 const TabNavigator = () => {
   return (
-    // <SafeAreaView style={{width:"100%",height:"100%"}}>
+    <SafeAreaView style={{width:"100%",height:"100%"}}>
       <ImageBackground  style={{width:"100%",height:"100%"}} source={logo}>
-       <View style={{width:"100%",height:"100%",paddingTop:260}}>
+       <View style={{width:"100%",height:"100%",paddingTop:'65%',padding:'10%'}}>
     <Tab.Navigator>
       <Tab.Screen  name="Login" component={Login} />
       <Tab.Screen name="Sign up" component={Signup}  />
     </Tab.Navigator>
     </View>
     </ImageBackground>
-    // </SafeAreaView>
+     </SafeAreaView>
   );
 };
 

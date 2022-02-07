@@ -19,6 +19,8 @@ import { setDestination, setOrigin } from '../slices/navSlice'
 import axios from 'axios'
 import { auth, database } from '../firebase';
 import {ref, get,set, onValue} from 'firebase/database'
+import Button from './components/Button/button.js';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 
@@ -248,10 +250,9 @@ const MapScreen = () => {
 
   return (
     
-    <><View style={tw`h-2/3`}>
-
+    <>
 <MapView
-    style={{flex:1}}
+    style={{flex:1,height:'100%'}}
     initialRegion={{
       latitude: currLat,
       longitude: currLng,
@@ -274,11 +275,12 @@ const MapScreen = () => {
             flex: 0
           },
           textInput: {
-            fontSize: 18,
-            paddingEnd: 160,
-            marginTop:-600,
+            fontSize: RFValue(18),
+            fontFamily:'Gilroy ExtraBold',
             alignSelf:'center',
-            position: 'relative'
+            position: 'relative',
+            marginTop:-1300,
+            width:'60%'
           }
         }}
         enablePoweredByContainer={false}
@@ -325,29 +327,13 @@ const MapScreen = () => {
         }} 
         
         />
-
-
-    </View>
-    <View style={tw`h-1/3`}>
-        <Image source={sidebar}
-          style={{ width: 80, height: 5, marginTop: 3, alignSelf: 'center' }}></Image>
-          
+<View style={{position:'absolute',alignSelf:'center',marginTop:'120%'}}>
         <NavigateCard />
 
         
-        <ImageBackground source={button}
-         style={{ width: 150,height: 30, marginTop:0,alignSelf:'center'}}
-         >
- <TouchableOpacity 
-         style={{ width: 150,height: 30, marginTop:0,alignSelf:'center'}}
-         onPress={getOneTimeLocation}>
-
-          <Text style={{color:"#FFFFFF", alignSelf:'center',fontSize:20}} >Continue</Text>
-          </TouchableOpacity>
-
-        </ImageBackground>
-
-      </View></>
+        <Button title='Continue' passedViewStyle={{width:'50%',alignSelf:'center',marginBottom:'10%'}}></Button>
+        </View>
+</>
   )
 }
 

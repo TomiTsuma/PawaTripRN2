@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,ImageBackground,StyleSheet, Text,Image,View,TextInput,TouchableOpacity, SafeAreaView} from 'react-native'
+import {ImageBackground,StyleSheet, Text,Image,View,TextInput,TouchableOpacity, SafeAreaView} from 'react-native'
 import tw from 'tailwind-react-native-classnames'
 import { useState } from 'react';
 import logo from '../assets/logo.png'; 
@@ -7,6 +7,8 @@ import 'react-native-gesture-handler';
 import { auth, database } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
+import Input from './components/Input/input';
+import Button from './components/Button/button';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -42,46 +44,34 @@ const Signup = () => {
     
     return (
         <SafeAreaView style={styles.container}>
-   
-<View style={styles.inputView2}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Name."
-    placeholderTextColor="#003f5c"
-    onChangeText={(name) => setName(name)}
-  />
-</View>
+  
+<Input
+ style={styles.TextInput}
+ placeholder="Name."
+ placeholderTextColor="#003f5c"
+ onChangeText={(name) => setName(name)}></Input>
+
+<Input
+ style={styles.TextInput}
+ placeholder="Email."
+ placeholderTextColor="#003f5c"
+ onChangeText={(email) => setEmail(email)}></Input>
  
-<View style={styles.inputView}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Email."
-    placeholderTextColor="#003f5c"
-    onChangeText={(email) => setEmail(email)}
-  />
-</View>
-<View style={styles.inputView}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Password."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(password) => setPassword(password)} 
-  />
-</View>
-<View style={styles.inputView}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Confirm Password."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(pwd) => setPwd(pwd)} 
-  />
-</View>
-<Text>
-<Button
-  title="Login"
-  onPress={handleSignUp}></Button>
+ <Input
+ style={styles.TextInput}
+ placeholder="Password."
+ placeholderTextColor="#003f5c"
+ onChangeText={(password) => setPassword(password)}></Input>
+
+<Input
+ style={styles.TextInput}
+ placeholder="Confirm Password."
+ placeholderTextColor="#003f5c"
+ onChangeText={(pwd) => setPwd(pwd)}></Input>
+
+<Button title='SIGN UP'></Button>
+
+<Text   style={{marginTop:20,fontFamily:'Gotham Black Regular'}}>
       OR
   </Text>
 
@@ -147,6 +137,8 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         marginLeft: 20,
+        fontFamily:'Gilroy ExtraBold'
+
       },
       
       forgot_button: {

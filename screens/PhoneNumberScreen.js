@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView,TextInput,Image,Button, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView,TextInput,Image,ImageBackground } from 'react-native'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserPhone } from '../slices/userSlice';
@@ -7,12 +7,15 @@ import logo from '../assets/logo.png';
 import { auth, database } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
 import {set, ref} from 'firebase/database'
+import { RFValue } from 'react-native-responsive-fontsize';
+import Input from './components/Input/input';
+import Button from './components/Button/button';
 
 
 const PhoneNumberScreen = ({navigation}) => {
     const [phone, setPhone] = useState('');
     const dispatch = useDispatch();
-    const user = String(auth.currentUser.email).split('@')[0];
+    // const user = String(auth.currentUser.email).split('@')[0];
 
     const setPhoneNumber = () =>{
         
@@ -27,9 +30,6 @@ const PhoneNumberScreen = ({navigation}) => {
           navigation.navigate('ModeScreen')
         
     }
-    
-    
-   
     return (
         <SafeAreaView style={styles.container}>
             <Image
@@ -37,21 +37,10 @@ const PhoneNumberScreen = ({navigation}) => {
             style={{width: "100%", height: "100%",margin:0,position:"absolute"}}>
         
         </Image>
-            <Text>Enter your Phone Number</Text>
+        <Text   style={{marginTop:20,fontSize:RFValue(18),fontFamily:'Gotham Black Regular'}}>Enter your Phone number</Text>
 
-            <View style={styles.inputView}>
-                
-                    
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder="Phone Number."
-                    placeholderTextColor="#003f5c"
-                    onChangeText={(phone) => setPhone(phone)}/>
-            </View>
-            <Button
-                    title="Continue"
-                    onPress={setPhoneNumber}
-                    ></Button>
+<Input placeholder='Phone Number'></Input>
+ <Button title="Continue"></Button>
         </SafeAreaView>
     )
 }

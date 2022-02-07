@@ -8,6 +8,8 @@ import dest from '../../assets/dest.png'
 import transition from '../../assets/transition.png'
 import bkg from '../../assets/driver_background.png'
 import { useDispatch, useSelector } from 'react-redux';
+import { RFValue } from 'react-native-responsive-fontsize'
+import CardView from 'react-native-cardview'
 
 
 
@@ -15,7 +17,6 @@ const NavigateCard = () => {
     const position = useSelector((state) => state.nav);
 
     return (
-        <SafeAreaView >
            
             <View style={styles.container1}>
                 
@@ -29,19 +30,20 @@ const NavigateCard = () => {
                    style={{width: 30, height: 40,marginStart:20}}/>     
             </View>
             <View style={styles.container3}>
-            <Text style={{fontSize:17,marginTop:10}}>Pick up</Text>
+            <Text   style={{marginTop:10,fontSize:RFValue(18),fontFamily:'Gotham Medium'}}>Pick up</Text>
             <TouchableOpacity>
-            <Text style={{fontSize:20}}>{position.origin.coordinates.name}</Text>
+            <Text   style={{marginTop:5,fontSize:RFValue(18),fontFamily:'Gotham Medium'}}>{position.origin.coordinates.name}</Text>
+
+            <Text style={{fontSize:20}}></Text>
             </TouchableOpacity>
-            <Text style={{fontSize:17, marginTop:40} }>Drop off</Text>
+            <Text   style={{marginTop:10,fontSize:RFValue(18),fontFamily:'Gotham Medium'}}>Drop off</Text>
             <TouchableOpacity>
-            <Text style={{fontSize:20}}>{position.destination.coordinates.name}</Text>
+            <Text   style={{marginTop:5,fontSize:RFValue(18),fontFamily:'Gotham Medium'}}>{position.destination.coordinates.name}</Text>
             </TouchableOpacity>
 
             </View>
             </View>
 
-        </SafeAreaView>
     )
 }
 
@@ -49,9 +51,17 @@ export default NavigateCard
 
 const styles = StyleSheet.create({
     container1:{
+        width:"100%",
         flexDirection :"row",
-        width:300,
-        
+        borderWidth:2,
+        paddingHorizontal:'10%',
+        paddingVertical:'3%',
+        borderColor:'#1E319320',
+        alignSelf:'center',
+        alignItems:'center',
+        borderRadius:50,
+        elevation:1,
+        backgroundColor:'#fff',
     },
     container2:{
         flexDirection :"column"
