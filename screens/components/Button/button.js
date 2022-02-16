@@ -13,6 +13,7 @@ export default class Button extends Component {
       <View style={{width:'100%',alignItems:'center'}}>
 <TouchableOpacity
 style={{width:'70%'}} 
+onPress={this.props.onPress}
 >
 <View
 style={[{width:'100%',borderRadius:20,backgroundColor:'#008AD8',justifyContent:'center',alignItems:'center',marginTop:'10%',padding:'3%'},this.props.passedViewStyle]}>

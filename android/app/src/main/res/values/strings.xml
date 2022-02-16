@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PawaTrip</string>
+    <string name="facebook_app_id">com.pawatrip</string>
+
 </resources>

@@ -4,12 +4,15 @@ import 'react-native-gesture-handler'
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import bkg from '../assets/driver_background.png'
+import back from '../assets/back.png'
 import carpoolersbkg from '../assets/carpooler_background.png'
 import plus from '../assets/plus.png'
 import minus from '../assets/minus.png'
 import NavigateCard from './components/NavigateCard';
 import { TextInput } from 'react-native-gesture-handler';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { RFValue } from 'react-native-responsive-fontsize';
+// import CardView from 'react-native-cardview';
 
 
 const RideDetails = ({navigation}) => {
@@ -56,25 +59,24 @@ const RideDetails = ({navigation}) => {
 
 return (
     
-    <SafeAreaView style={{ width: "100%", height: "100%" }}>
+    <SafeAreaView style={{ width: "100%", height: "100%"
+  }}>
       
       <ImageBackground
         source={back}
-        style={{ width: "100%", height: "100%"}}>
+        style={{ width: "100%", height: "100%" ,alignSelf:'center',alignItems:'center'}}>
       
       <Text style={styles.title}>Ride Details</Text>
       <View style={{ width: "100%", height: "100%", alignItems: 'center', marginTop: 40, marginBottom: 10, flexDirection: "column" }}>
-        <ImageBackground source={bkg}
-          style={{ width: 310, height: 190 }}>
+     
           <NavigateCard ></NavigateCard>
-        </ImageBackground>
         <View style={{ width: "100%", height: 20, marginTop: 10, marginBottom: 10, padding:50, flex: 1, flexDirection: "row",alignSelf:"center" ,flex:0}}>
           <View style={{ marginEnd:80}} >
-            <Text style={{ width:120,height:50,marginBottom:-20,fontSize:15}}>Departure Time</Text>
+            <Text style={{ width:120,height:50,marginBottom:-20,fontSize:RFValue(15),fontFamily:'Gilroy ExtraBold',color:'#1E3193'}}>Departure Time</Text>
             <TouchableOpacity onPressIn={()=>setTimeDateMode("time")} onPress={ showDatePicker}>
-              <ImageBackground source={bkg}
-                style={{ width: 130, height: 70 }}>
-                <Text style={{ alignSelf: "center", marginTop: 10,fontSize:17 }} >{time}</Text>
+              <View
+                style={{ paddingHorizontal:'5%',paddingVertical:'30%',width:'90%',height:'100%',borderRadius:20}}>
+                <Text style={{ alignSelf: "center", marginTop: 10,fontSize:RFValue(18),fontFamily:'Gilroy ExtraBold',color:'#4A4A49'}} >{time}</Text>
 
                 <DateTimePickerModal
                   isVisible={isDatePickerVisible}
@@ -83,11 +85,13 @@ return (
                   onConfirm={handleConfirm}
                   onCancel={hideDatePicker}
                 />
-              </ImageBackground>
+              </View>
             </TouchableOpacity>
 
           </View>
-          <View style={{ }} >
+          <View
+                          style={{ paddingHorizontal:'5%',paddingVertical:'30%',width:'90%',height:'100%',borderRadius:20}}>
+                    
             <Text style={{ width:120,height:50,marginBottom:-20,fontSize:15}}>Departure Date</Text>
             <TouchableOpacity onPressIn={()=>setTimeDateMode("date")} onPress={showDatePicker}>
 
@@ -99,8 +103,7 @@ return (
               </ImageBackground>
             </TouchableOpacity>
 
-          </View>
-
+            </View>
         </View>
         
         <Text style={{ marginTop: 100 ,fontSize:17}}>Number of passengers</Text>
@@ -144,10 +147,11 @@ const styles = StyleSheet.create({
 
   },
   title: {
-    color: '#ffffff',
-    alignSelf: 'center',
-    marginTop: 50,
-    fontSize: 25
+    color:'#ffffff',
+    alignSelf:'center',
+    marginTop:50,
+    fontSize:RFValue(24),
+    fontFamily:'Gotham Black Regular'
   }
 })
 

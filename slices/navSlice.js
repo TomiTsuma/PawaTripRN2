@@ -4,22 +4,24 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     origin: { 
         coordinates:{
-            latitude:"",
-            longitude:"",
+            latitude:"0.0",
+            longitude:"0.0",
             name:"Current Position"
         }
     },
     destination: {
         coordinates:{
             latitude:"0.0",
-            longitude:"",
+            longitude:"0.0",
             name:"Destination"
         }
     },
     travelTimeInformation :{
         information:{
             distance:'',
-            time:''
+            time:'',
+            price:'',
+            duration:''
         }
     },
     
@@ -37,7 +39,7 @@ export const navSlice = createSlice({
             state.destination = action.payload
         },
         setTravelTimeInformation:(state,action) => {
-            state.origin = action.payload
+            state.travelTimeInformation = action.payload
         },
         
     }

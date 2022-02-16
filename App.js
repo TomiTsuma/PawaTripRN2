@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import * as Sentry from "@sentry/react-native";
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -21,17 +22,36 @@ import Rides from './screens/Rides.js';
 import CarpoolerList from './screens/CarpoolerList.js';
 import Login from './screens/Login.js';
 import CarpoolerCard from './screens/components/CarpoolerCard.js';
+import ImageUpload from './screens/ImgUpload.js';
+import { SharedElementRenderer } from 'react-native-motion';
 
-
+Sentry.init({
+  dsn: "https://d080087d3afd479fb0f97078718ec605@o1144139.ingest.sentry.io/6206542",
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+  // We recommend adjusting this value in production.
+  tracesSampleRate: 1.0,
+  debug:true,
+  maxBreadcrumbs:150,
+  enableAutoSessionTracking:true,
+  sessionTrackingIntervalMillis:10000
+});
 export default function App() {
   const Stack = createStackNavigator();
 
   return (
     
     <Provider store={store}>
+      <SharedElementRenderer>
     <NavigationContainer>
     <SafeAreaProvider>
-     <Stack.Navigator initialRouteName='PriceDetails'>
+     <Stack.Navigator initialRouteName='MapScreen'>
+     <Stack.Screen
+      name='ImgUpload'
+      component = {ImageUpload}
+      options = {{
+        headerShown: false
+      }}
+      />
      <Stack.Screen
       name='Index'
       component = {Index}
@@ -114,6 +134,7 @@ export default function App() {
     </Stack.Navigator>
     </SafeAreaProvider>
     </NavigationContainer>
+    </SharedElementRenderer>
     </Provider>
   );
 }

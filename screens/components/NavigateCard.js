@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, SafeAreaView , Image, ImageBackground} from 'react-native'
 import { BackgroundImage } from 'react-native-elements/dist/config'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -9,11 +9,12 @@ import transition from '../../assets/transition.png'
 import bkg from '../../assets/driver_background.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { RFValue } from 'react-native-responsive-fontsize'
-import CardView from 'react-native-cardview'
+// import CardView from 'react-native-cardview'
 
 
 
 const NavigateCard = () => {
+    const [carpoolers, setCarpoolers] = useState('1')
     const position = useSelector((state) => state.nav);
 
     return (
